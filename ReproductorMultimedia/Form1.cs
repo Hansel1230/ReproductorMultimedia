@@ -10,11 +10,32 @@ using System.Windows.Forms;
 
 namespace ReproductorMultimedia
 {
-    public partial class Form1 : Form
+    public partial class FomRproductor : Form
     {
-        public Form1()
+        private string ruta;
+        private string ruta1;
+
+        public FomRproductor()
         {
             InitializeComponent();
+        }
+
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ruta = openFileDialog1.FileName;
+                ruta1 = ruta;
+                Btnplay.Visible = true;
+            }
+            ruta = "";
+        }
+
+        private void Btnplay_Click(object sender, EventArgs e)
+        {
+            axWindowsMediaPlayer1.URL = ruta1;
+            axWindowsMediaPlayer1.Ctlcontrols.play();
+            Btnplay.Visible=false;
         }
     }
 }
